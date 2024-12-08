@@ -1,0 +1,39 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="GodoChat"
+run/main_scene="res://Scenes/main.tscn"
+config/features=PackedStringArray("4.3", "C#", "Mobile")
+config/icon="res://iconoprogramachat.png"
+
+[autoload]
+
+Net="*res://Scripts/Functions/Net.gd"
+Functions="*res://Scripts/Functions/Functions.gd"
+
+[display]
+
+window/stretch/mode="canvas_items"
+
+[dotnet]
+
+project/assembly_name="GodoChat"
+
+[internationalization]
+
+locale/fallback="es_ES"
+locale/locale_filter_mode=0
+
+[rendering]
+
+renderer/rendering_method="mobile"
+textures/vram_compression/import_etc2_astc=true

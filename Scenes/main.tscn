@@ -1,0 +1,107 @@
+[gd_scene load_steps=3 format=3 uid="uid://bdti5tudsuewi"]
+
+[ext_resource type="Script" path="res://Scripts/loggin.gd" id="1_rkmep"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hxqwl"]
+bg_color = Color(0.152941, 0.152941, 0.152941, 0.490196)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[node name="main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rkmep")
+
+[node name="Chatpanel" type="Panel" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0)
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_hxqwl")
+
+[node name="Chat" type="ItemList" parent="Chatpanel"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 26.0
+offset_right = 1114.0
+offset_bottom = 576.0
+allow_search = false
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Chatpanel"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 32.0
+offset_top = -68.0
+offset_right = -38.0
+offset_bottom = -23.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="message" type="LineEdit" parent="Chatpanel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="send" type="Button" parent="Chatpanel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.3
+text = "Send
+"
+
+[node name="logginpanel" type="Panel" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 468.0
+offset_top = 256.0
+offset_right = 678.0
+offset_bottom = 391.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="logginpanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_right = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="name" type="LineEdit" parent="logginpanel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+placeholder_text = "Nick"
+alignment = 1
+
+[node name="connect" type="Button" parent="logginpanel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Connect"
+
+[node name="exit" type="Button" parent="logginpanel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+text = "Exit"
+
+[connection signal="text_submitted" from="Chatpanel/HBoxContainer/message" to="." method="MensajeLanzado"]
+[connection signal="button_down" from="Chatpanel/HBoxContainer/send" to="." method="SendMessage"]
+[connection signal="button_down" from="logginpanel/VBoxContainer/connect" to="." method="_press_connect_to"]
+[connection signal="button_down" from="logginpanel/VBoxContainer/exit" to="." method="ExitPress"]
